@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { EnvelopeIcon, CheckIcon } from '@heroicons/react/24/outline';
+import axios from 'axios';
 
 const HeroWaitlistForm = () => {
   const [email, setEmail] = useState('');
@@ -16,24 +17,11 @@ const HeroWaitlistForm = () => {
     setError('');
     
     try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to subscribe');
-      }
-
+      await axios.post('https://getlaunchlist.com/s/HWMIH9', { email });
       setIsSubmitted(true);
       setEmail('');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to subscribe');
+      setError('Failed to subscribe. Please try again.');
     } finally {
       setIsLoading(false);
     }
