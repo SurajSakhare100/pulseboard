@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PulseBoard - Client Update Portal",
-  description: "The lightweight client update portal built for freelancers and small studios. It replaces scattered emails, Notion pages, and status calls with a single, branded link where clients can view real-time project progress, updates, and shared files — no logins, no friction. Freelancers stay in control, reduce inbox noise, and build trust, while clients feel consistently informed without needing to ask, “Any update?”",
+  title: "UpdateBoard - Client Update Portal",
+  description: "A super simple client update portal for freelancers to share project progress, files, and notes.",
 };
 
 export default function RootLayout({
