@@ -31,7 +31,7 @@ const Navbar = () => {
               className="text-xl font-bold text-gray-900"
               whileHover={{ scale: 1.05 }}
             >
-              UpdateBoard
+              PulseBoard
             </motion.h1>
           </div>
           

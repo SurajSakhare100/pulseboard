@@ -9,14 +9,16 @@ const WaitlistForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    
+    setSuccess(false);
+
     try {
-      const response = await fetch('https://getlaunchlist.com/s/HWMIH9', {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,13 +26,16 @@ const WaitlistForm = () => {
         body: JSON.stringify({ email }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to join waitlist');
+        throw new Error(data.error || 'Failed to subscribe');
       }
 
-      setIsSubmitted(true);
+      setSuccess(true);
+      setEmail('');
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError(err instanceof Error ? err.message : 'Failed to subscribe');
     } finally {
       setIsLoading(false);
     }

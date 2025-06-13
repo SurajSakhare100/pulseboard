@@ -16,7 +16,7 @@ const HeroWaitlistForm = () => {
     setError('');
     
     try {
-      const response = await fetch('https://getlaunchlist.com/s/HWMIH9', {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,13 +24,16 @@ const HeroWaitlistForm = () => {
         body: JSON.stringify({ email }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to join waitlist');
+        throw new Error(data.error || 'Failed to subscribe');
       }
 
       setIsSubmitted(true);
+      setEmail('');
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError(err instanceof Error ? err.message : 'Failed to subscribe');
     } finally {
       setIsLoading(false);
     }
@@ -65,7 +68,7 @@ const HeroWaitlistForm = () => {
             disabled={isLoading}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-black bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${
+            className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${
               isLoading ? 'opacity-75 cursor-not-allowed' : ''
             }`}
           >
@@ -85,8 +88,8 @@ const HeroWaitlistForm = () => {
           <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
             <CheckIcon className="h-6 w-6 text-green-600" />
           </div>
-          <h3 className="text-lg font-medium text-black">You're on the list!</h3>
-          <p className="text-gray-500">
+          <h3 className="text-lg font-medium text-white">You're on the list!</h3>
+          <p className="text-gray-300">
             We'll notify you when PulseBoard is ready for you.
           </p>
         </motion.div>

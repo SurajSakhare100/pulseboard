@@ -178,7 +178,7 @@ const HomePage = () => {
                 </ul>
               </motion.div>
             </div>
-          </div>
+        </div>
         </section>
 
         {/* Testimonials Section */}
@@ -247,7 +247,7 @@ const HomePage = () => {
                 <WaitlistForm />
               </div>
             </motion.div>
-          </div>
+    </div>
         </section>
       </main>
       <Footer />
