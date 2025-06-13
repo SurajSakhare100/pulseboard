@@ -20,11 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <head>
-        <Script src="https://getlaunchlist.com/js/widget.js" defer>
-        </Script>
-      </head>
-      <body>{children}</body>
+     
+      <body>{children}
+        <script src="https://getlaunchlist.com/js/widget.js" defer> </script>
+
+
+      </body>
     </html>
   );
 }

@@ -17,7 +17,7 @@ const WaitlistForm = () => {
     setError('');
 
     try {
-      await axios.post('https://getlaunchlist.com/s/HWMIH9', { email });
+     
       setIsSubmitted(true);
       setEmail('');
     } catch (err) {
@@ -34,7 +34,7 @@ const WaitlistForm = () => {
       className="w-full max-w-lg mx-auto"
     >
       {!isSubmitted ? (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" action="https://getlaunchlist.com/s/FrPWGd"  method="POST">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <EnvelopeIcon className="h-5 w-5 text-gray-400" />
