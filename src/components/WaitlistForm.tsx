@@ -16,7 +16,7 @@ const WaitlistForm = () => {
     setError('');
     
     try {
-      const response = await fetch('/api/waitlist', {
+      const response = await fetch('https://getlaunchlist.com/s/HWMIH9', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
